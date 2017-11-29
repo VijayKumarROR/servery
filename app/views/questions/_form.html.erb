@@ -1,0 +1,16 @@
+<div class="form">
+	<%= form_for @question do |f| %>
+	<div class="form-group">
+	User : <%= f.text_field :user_id, :value => current_user.id %>
+	Title :<%= f.text_field :title %>
+	Status : <%= f.select(:status, options_for_select([['Active','Active'], ['Expire','Expire'],['Pvt','Pvt']])) %>
+	</div>
+	<%= f.submit :save %>
+	<% end %>
+</div>
+
+<% if user_signed_in?%>
+	<li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+		<%else%>
+	<li><%= link_to "Log In", new_user_session_path%></li>
+<% end %>

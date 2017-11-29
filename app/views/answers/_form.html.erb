@@ -1,0 +1,11 @@
+
+<div class="form">
+	<%= form_for @answer do |f| %>
+	<div class="form-group">
+	User : <%= f.text_field :user_id, :value => current_user.id %>
+	Description : <%= f.text_area :description, :placeholder => "Answers" %>
+	 <%#= f.select(:status, options_forselect([['Active','Active'], ['Expire','Expire'],['Pvt','Pvt']])) %>
+	</div>
+	<%= f.submit :save %>
+	<% end %>
+</div>

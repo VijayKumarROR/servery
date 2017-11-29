@@ -1,7 +1,8 @@
-class Api::V1::QuestionsController < ApplicationController
+class QuestionsController < ApplicationController
+	before_action :authenticate_user!
 	respond_to :json
 	#before_action :authenticate_user!
-	skip_before_filter :verify_authenticity_token
+	#skip_before_filter :verify_authenticity_token
 
 	def index
 		questions = Question.order("created_at DESC");
@@ -9,16 +10,18 @@ class Api::V1::QuestionsController < ApplicationController
 	end
 
 	def new
-		@question = current_user.questions.build(question_params)
+		@question = current_user.questions.build
 	end
 
 	def create
-		question = current_user.questions.build(question_params)
-		question.user_id = current_user.id
-		if question.save
-			render json: {status: 'success', message: "Question saved", data: question}, status: :ok
+		@question = current_user.questions.build(question_params)
+		@question.user_id = current_user.id
+		if @question.save
+			respond_to do |format|
+			format.html {redirect_to :controller => "answers", :action => "new"}
+		end
 		else
-			render json: {errors: question.errors}, status: 422
+			render json: {errors: @question.errors}, status: 422
 		end
 	end
 
@@ -40,6 +43,6 @@ class Api::V1::QuestionsController < ApplicationController
 
 	private
 		def question_params
-		params.require(:question).permit(:title, :user_id)
+		params.require(:question).permit(:title, :user_id, :alpha_num, :status)
 	end
 end
