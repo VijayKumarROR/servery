@@ -1,3 +1,9 @@
+
+<b><%= current_user.questions.count %></b>Number of Question owned by him 
+<br />
+<b><%= current_user.answers.count %></b>Number of Answer owned by him 
+<br />
+
 <div class="form">
 	<%= form_for @question do |f| %>
 	<div class="form-group">
@@ -9,8 +15,4 @@
 	<% end %>
 </div>
 
-<% if user_signed_in?%>
-	<li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-		<%else%>
-	<li><%= link_to "Log In", new_user_session_path%></li>
-<% end %>
+<%= link_to "Back", :controller => "questions", :action => "index" %>

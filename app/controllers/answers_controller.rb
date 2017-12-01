@@ -12,12 +12,13 @@ class AnswersController < ApplicationController
 
 	def new
 		@answer = Answer.new
+		@question = Question.new
 	end
 
 	def create
 		#answer = Answer.new(answer_params)
 		#@question = Question.find(params[:question_id])
-    	@answer = @question.answers.create(answer_params)
+    	@answer = Answer.create(answer_params)
 		@answer.user_id = current_user.id
 		@answer.save
 			respond_to do |format|

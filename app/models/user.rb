@@ -11,5 +11,6 @@ require 'securerandom'
   def generate_alpha_numeric
   	self.alpha_num = SecureRandom.urlsafe_base64(9)
   end
-
+ 
+ enum role: [:user, :admin]
 end

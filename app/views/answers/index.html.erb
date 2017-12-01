@@ -1,4 +1,5 @@
-<h1>Hai i am editable</h1>
+
+<%= link_to "Back", :controller => "questions", :action => index %>
 <% if user_signed_in?%>
 	<li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
 		<%else%>

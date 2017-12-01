@@ -5,8 +5,23 @@ class QuestionsController < ApplicationController
 	#skip_before_filter :verify_authenticity_token
 
 	def index
-		questions = Question.order("created_at DESC");
-		render json: questions.as_json(only: [:id,:title,:user_id,:created_at])
+		#if current_user.role == true
+		p current_user
+			@user_count = User.count
+			@question_count = Question.count
+			@answer_count = Answer.count
+			
+		#questions = Question.order("created_at DESC");
+
+		#render json: questions.as_json(only: [:id,:title,:user_id,:created_at, :user_count, :question_count,:answer_count])
+	#else	
+		#questions = Question.order("created_at DESC");
+		#render json: questions.as_json(only: [:id,:title,:user_id,:created_at])
+	end
+
+	def admin_question
+		p params
+		
 	end
 
 	def new

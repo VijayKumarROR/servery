@@ -1,0 +1,16 @@
+
+
+
+<% if current_user.role == true %>
+
+	<b>Number of User</b><%= @user_count%> <br />
+	<b>Number of Questions</b><%= @question_count%> <br />
+	<b>Number of Answers</b><%= @answer_count%><br />
+
+	<%else %>
+
+	<b><%= link_to "New Question", new_question_path %></b>
+
+<% end %>
+
+

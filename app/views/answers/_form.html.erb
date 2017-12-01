@@ -3,6 +3,7 @@
 	<%= form_for @answer do |f| %>
 	<div class="form-group">
 	User : <%= f.text_field :user_id, :value => current_user.id %>
+	Ques : <%= f.collection_select :question_id, Question.order('created_at desc'), :id, :title %>
 	Description : <%= f.text_area :description, :placeholder => "Answers" %>
 	 <%#= f.select(:status, options_forselect([['Active','Active'], ['Expire','Expire'],['Pvt','Pvt']])) %>
 	</div>
